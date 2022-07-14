@@ -96,7 +96,7 @@ var displayCurrWeather = function(lat, lon) {
                 var icon=data.current.weather[0].icon;
                 currImgEl.setAttribute("src",iconStartUrl+icon+iconEndUrl);
                 currTempEl.textContent=data.current.temp+"°F";
-                currWindEl.textContent=data.current.wind_speed+"MPH";
+                currWindEl.textContent=data.current.wind_speed+" MPH";
                 currHumidityEl.textContent=data.current.humidity+"%";
                 currUvEl.textContent=data.current.uvi;
                 editUvIndex(lat,lon);
@@ -114,8 +114,16 @@ var editUvIndex = function(lat,lon) {
             console.log(response);
             response.json().then(function(data){
                 console.log(data)
-                var uV = data.current.uvi;
-                
+
+                currUvEl.classList.remove();
+
+                if (currUvEl<=3){
+                    currUvEl.classList.add("badge", "badge-success");
+                } else if (currUvEl>3 && currUvEl<=8) {
+                    currUvEl.classList.add("badge", "badge-danger");
+                } else {
+                    currUvEl.classList.add("badge", "badge-warning");
+                }
             });           
         } else {
             alert("Error: City Not Found");
