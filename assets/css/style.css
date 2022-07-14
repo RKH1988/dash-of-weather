@@ -37,3 +37,7 @@
     background-color: #202099;
     color: white;
 }
+
+.container-fluid, .card-deck {
+    width: 100%;
+}
