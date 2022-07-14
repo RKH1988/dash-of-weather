@@ -26,53 +26,83 @@
                     <h2 class="card-header">Search for a City:</h2>
                     <form id="user-form" class="card-body">
                         <div class="form-group">
-                            <input id="city" type="text" class="form-control" placeholder="Enter a city"/>
+                            <input name="city" id="city" type="text" autofocus="true" class="form-control" placeholder="Greensboro"/>
                         </div>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Search</button>
                     </form>
                 </div>
                 <div class="searches">
             
                 </div>
             </div>
-        <div class="weather col-12 col-md-8">
+        <div id="weather" class="col-12 col-md-8">
             <div class="card">
-                <h2 class="card-title"> <span id="city-name">it's a city</span></h2>
-                <div id="current" class="card-text">test text</div>
+                <h2 class="card-title"> <span id="city-name"></span><span id="currDate"></span><img id="currImg" src="" alt="Today's Weather Icon"></h2>
+                <div id="current" class="card-text">
+                    <p>Temp: <span id="currTemp"></span></p>
+                    <p>Wind: <span id="currWind"></span></p>
+                    <p>Humidity: <span id="currHumidity"></span></p>
+                    <p>UV Index: <span id="currUv"></span></p>
+                </div>
             </div>
-            <div class="">
+            <div>
                 <h3 class="forecast-title my-3">5-Day Forecast:</h3>
             </div>
             <div class="row ">
                 <div class="card-deck">
-                    <div class="card" id="day1">
+                    <div class="card forecast-day" id="1">
                         <div class="card-body">
-                            <h4 class="forecast card-title">Card title</h4>
-                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </div>
+                            <h4 class="forecast card-title"><span id="date1"></span></h4>
+                            <div class="card-text">
+                                <img id="1img" src="" alt="">
+                                <p>Temp: <span id="1Temp"></span></p>
+                                <p>Wind: <span id="1Wind"></span></p>
+                                <p>Humidity: <span id="1Humidity"></span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card" id="day2">
+                    <div class="card forecast-day" id="2">
                         <div class="card-body">
-                            <h4 class="forecast card-title">Card title</h4>
-                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </div>
+                            <h4 class="forecast card-title"><span id="date2"></span></h4>
+                            <div class="card-text">
+                                <img id="2img" src="" alt="">
+                                <p>Temp: <span id="Temp"></span></p>
+                                <p>Wind: <span id="2Wind"></span></p>
+                                <p>Humidity: <span id="2Humidity"></span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card" id="day3">
+                    <div class="card forecast-day" id="3">
                         <div class="card-body">
-                            <h4 class="forecast card-title">Card title</h4>
-                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </div>
+                            <h4 class="forecast card-title"><span id="date3"></span></h4>
+                            <div class="card-text">
+                                <img id="3img" src="" alt="">
+                                <p>Temp: <span id="3Temp"></span></p>
+                                <p>Wind: <span id="3Wind"></span></p>
+                                <p>Humidity: <span id="3Humidity"></span></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card" id="day4">
+                    <div class="card forecast-day" id="4">
                         <div class="card-body">
-                            <h4 class="forecast card-title">Card title</h4>
-                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</div>
+                            <h4 class="forecast card-title"><span id="date4"></span></h4>
+                            <div class="card-text">
+                                <img id="4img" src="" alt="">
+                                <p>Temp: <span id="4Temp"></span></p>
+                                <p>Wind: <span id="4Wind"></span></p>
+                                <p>Humidity: <span id="4Humidity"></span></p>    
+                            </div>
                         </div>
                     </div>
-                    <div class="card" id="day5">
+                    <div class="card forecast-day" id="5">
                         <div class="card-body">
-                            <h4 class="forecast card-title">Card title</h4>
-                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</div>
+                            <h4 class="forecast card-title"><span id="date5"></span></h4>
+                            <div class="card-text">
+                                <img id="5img" src="" alt="">
+                                <p>Temp: <span id="5Temp"></span></p>
+                                <p>Wind: <span id="5Wind"></span></p>
+                                <p>Humidity: <span id="5Humidity"></span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,6 +114,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
