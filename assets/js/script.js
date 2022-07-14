@@ -15,7 +15,11 @@ var userFormEl=document.querySelector("#user-form");
 var cityInputEl=document.querySelector("#city");
 var currentContainerEl=document.querySelector("#current");
 var cityDisplayEl = document.querySelector("#city-name");
-
+var currDateEl=document.querySelector("#currDate");
+var currTempEl=document.querySelector("#currTemp");
+var currWindEl=document.querySelector("#currWind");
+var currHumidityEl=document.querySelector("#currHumidity");
+var currUvEl=document.querySelector("#currUv");
 
 var formSubmitHandler = function(event) {
     //prevent page from refreshing
@@ -28,7 +32,7 @@ var formSubmitHandler = function(event) {
         getCoordinates(city);
 
         //clear old content
-        currentContainerEl.textContent="";
+        //currentContainerEl.textContent="";
         cityInputEl.value="";
     } else {
         alert("Please enter a city name");
@@ -80,15 +84,48 @@ var getCurrWeather = function(lat,lon){
 };
 
 //current weather fetch
+var displayCurrWeather = function(lat, lon) {
+    var apiUrl=apiBegin +lat +"&lon="+lon+apiEnd;
+    fetch(apiUrl).then(function(response){
+        if(response.ok) {
+            console.log(response);
+            response.json().then(function(data){
+                console.log(data)
+                currDateEl.textContent="  "+ moment(current.dt).format("M/D/YYYY");
+                var currImgEl=document.querySelector("#currImg");
+                var icon=data.current.weather[0].icon;
+                currImgEl.setAttribute("src",iconStartUrl+icon+iconEndUrl);
+                currTempEl.textContent=data.current.temp+"°F";
+                currWindEl.textContent=data.current.wind_speed+"MPH";
+                currHumidityEl.textContent=data.current.humidity+"%";
+                currUvEl.textContent=data.current.uvi;
+                editUvIndex(lat,lon);
+            });           
+        } else {
+            alert("Error: City Not Found");
+        }    
+    });
+};
 
+var editUvIndex = function(lat,lon) {
+    var apiUrl=apiBegin +lat +"&lon="+lon+apiEnd;
+    fetch(apiUrl).then(function(response){
+        if(response.ok) {
+            console.log(response);
+            response.json().then(function(data){
+                console.log(data)
+                var uV = data.current.uvi;
+                
+            });           
+        } else {
+            alert("Error: City Not Found");
+        }    
+    });
+};
 
 //convert Unix Timestamp to date
  //  moment(dt).format("M/D/YYYY");
 
 
-//  $("#submit").on("click",function(){
-//     $("#weather").removeClass("d-none").addClass("d-inline");
-//  })
-
-// add event listeners to forms
+// add event listener to form
 userFormEl.addEventListener('submit', formSubmitHandler);
