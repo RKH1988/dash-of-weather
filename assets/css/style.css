@@ -1,0 +1,29 @@
+.d-flex {
+    height: 75px;
+    background-image: linear-gradient(to right, rgba(0,0,255,0.8), rgba(0,0,128,1));
+}
+
+.d-flex h1 {
+    color: white;
+    font-size: 35px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+.card-header, .card-title{
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+.forecast-title {
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+.forecast {
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}

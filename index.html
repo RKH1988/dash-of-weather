@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Dash of Weather</title>
+</head>
+<body>
+    <header>
+        <div class="d-flex justify-content-center align-items-center">
+            <h1 class="text-center">Weather Dashboard</h1>
+        </div>
+    </header>
+
+    <main class="container mt-2">
+        <div class="row justify-content-between ">
+
+            <div class="col-12 col-md-4">
+                <div class="card bg-light mb-3">
+                    <h2 class="card-header">Search for a City:</h2>
+                    <form id="user-form" class="card-body">
+                        <div class="form-group">
+                            <input id="city" type="text" class="form-control" placeholder="Enter a city"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+                <div class="searches">
+            
+                </div>
+            </div>
+        <div class="weather col-12 col-md-8">
+            <div class="card">
+                <h2 class="card-title"> <span id="city-name">it's a city</span></h2>
+                <div id="current" class="card-text">test text</div>
+            </div>
+            <div class="">
+                <h3 class="forecast-title my-3">5-Day Forecast:</h3>
+            </div>
+            <div class="row ">
+                <div class="card-deck">
+                    <div class="card" id="day1">
+                        <div class="card-body">
+                            <h4 class="forecast card-title">Card title</h4>
+                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </div>
+                        </div>
+                    </div>
+                    <div class="card" id="day2">
+                        <div class="card-body">
+                            <h4 class="forecast card-title">Card title</h4>
+                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </div>
+                        </div>
+                    </div>
+                    <div class="card" id="day3">
+                        <div class="card-body">
+                            <h4 class="forecast card-title">Card title</h4>
+                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. </div>
+                        </div>
+                    </div>
+                    <div class="card" id="day4">
+                        <div class="card-body">
+                            <h4 class="forecast card-title">Card title</h4>
+                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</div>
+                        </div>
+                    </div>
+                    <div class="card" id="day5">
+                        <div class="card-body">
+                            <h4 class="forecast card-title">Card title</h4>
+                            <div class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>

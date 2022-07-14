@@ -1,7 +1,7 @@
 # Dash of Weather
 
 ## Description
-App that allows a user to enter a location and retieve a live weather forecast for that place. 
+App that allows a user to enter a location and retrieve a live weather forecast for that place. 
 
 ## Screenshot
 ![screenshot](./assets/images/screenshot.png)
@@ -11,7 +11,8 @@ App that allows a user to enter a location and retieve a live weather forecast f
 * CSS
 * JavaScript
 * Bootstrap
-* JQuery
+* OpenWeather One Call API
+* OpenWeather Geocoding API
 
 
 ## Deployed Application 
