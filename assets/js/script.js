@@ -3,12 +3,12 @@ var apiEnd = "&exclude=minutely,hourly,alerts&appid=5a4b1c36c3275dd441fc4329cc80
 var apiBegin = "https://api.openweathermap.org/data/2.5/onecall?&lat=";
 
 //weather icon href link
-var iconStartUrl = "http://openweathermap.org/img/wn/";
+var iconStartUrl = "https://openweathermap.org/img/wn/";
 var iconEndUrl = "@2x.png";
 var icon = "";
 
 //api to get lat and lon from city name
-var coordUrl = "http://api.openweathermap.org/geo/1.0/direct?q=";
+var coordUrl = "https://api.openweathermap.org/geo/1.0/direct?q=";
 var apiKey = "&limit=5&appid=5a4b1c36c3275dd441fc4329cc80e586";
 
 //variables for querySelectors
