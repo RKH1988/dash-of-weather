@@ -1,4 +1,4 @@
-.d-flex {
+.header {
     height: 75px;
     background-image: linear-gradient(to right, rgba(0,0,255,0.8), rgb(26, 26, 158));
 }
@@ -10,7 +10,7 @@
     font-weight: 700;
 }
 
-.btn {
+.btn-primary {
     background-color: #202099;
     border: none;
 }
@@ -40,4 +40,8 @@
 
 .container-fluid, .card-deck {
     width: 100%;
+}
+
+img {
+    max-height: 15%;
 }

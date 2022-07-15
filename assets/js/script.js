@@ -1,16 +1,17 @@
+//api to get all weather
 var apiEnd = "&exclude=minutely,hourly,alerts&appid=5a4b1c36c3275dd441fc4329cc80e586&units=imperial";
 var apiBegin = "https://api.openweathermap.org/data/2.5/onecall?&lat=";
 
+//weather icon href link
 var iconStartUrl = "http://openweathermap.org/img/wn/";
 var iconEndUrl = "@2x.png";
 var icon = "";
 
+//api to get lat and lon from city name
 var coordUrl = "http://api.openweathermap.org/geo/1.0/direct?q=";
 var apiKey = "&limit=5&appid=5a4b1c36c3275dd441fc4329cc80e586";
 
-var saveBtn=$("#save");
-
-var sHistoryArr=[];
+//variables for querySelectors
 var userFormEl=document.querySelector("#user-form");
 var cityInputEl=document.querySelector("#city");
 var currentContainerEl=document.querySelector("#current");
@@ -46,6 +47,8 @@ var humidity3El=document.querySelector("#Humidity3");
 var humidity4El=document.querySelector("#Humidity4");
 var humidity5El=document.querySelector("#Humidity5");
 
+var cityArr=[];
+//function to submit the city entered in the input
 var formSubmitHandler = function(event) {
     //prevent page from refreshing
     event.preventDefault();
@@ -55,18 +58,23 @@ var formSubmitHandler = function(event) {
 
     if (city) {
         getCoordinates(city);
-        //localStorage.setItem("cityList", city);
+        saveCity(city);
+
+        //clear old content
+        cityInputEl.value = ""
+
     } else {
         alert("Please enter a city name");
     }
 };
 
+//function to get lat and lon from city name using api
 var getCoordinates = function(city) {
     //format the url
     var apiUrl = coordUrl + city + apiKey;
     console.log(apiUrl);
 
-    //fetch lat and lon
+    //fetch lat and lon and display city name
     fetch(apiUrl).then(function(response){
         //request was successful
         if(response.ok) {
@@ -87,11 +95,11 @@ var getCoordinates = function(city) {
     });
 };
 
+//function that calls the functions that get current and forecast weather data based on submitted lon and lat
 var getCurrWeather = function(lat,lon){
     var apiUrl=apiBegin +lat +"&lon="+lon+apiEnd;
     console.log(apiUrl);
-    
-    //fetch current weather data
+
     fetch(apiUrl).then(function(response){
         if(response.ok) {
             console.log(response);
@@ -121,8 +129,8 @@ var displayCurrWeather = function(lat, lon) {
                 currTempEl.textContent=data.current.temp+"°F";
                 currWindEl.textContent=data.current.wind_speed+" MPH";
                 currHumidityEl.textContent=data.current.humidity+"%";
-                currUvEl.textContent=data.current.uvi;
-                editUvIndex(lat,lon);
+                currUvEl.textContent=parseInt(data.current.uvi);
+                editUvIndex(currUvEl);
             });           
         } else {
             alert("Error: City Not Found");
@@ -130,30 +138,25 @@ var displayCurrWeather = function(lat, lon) {
     });
 };
 
-var editUvIndex = function(lat,lon) {
-    var apiUrl=apiBegin +lat +"&lon="+lon+apiEnd;
-    fetch(apiUrl).then(function(response){
-        if(response.ok) {
-            console.log(response);
-            response.json().then(function(data){
-                console.log(data)
-
-                currUvEl.classList.remove();
-
-                if (currUvEl<=3){
-                    currUvEl.classList.add("badge", "badge-success");
-                } else if (currUvEl>3 && currUvEl<=8) {
-                    currUvEl.classList.add("badge", "badge-danger");
-                } else {
-                    currUvEl.classList.add("badge", "badge-warning");
-                }
-            });           
-        } else {
-            alert("Error: City Not Found");
-        }    
-    });
+//updates uv color based on favorable/unfavorable uv conditions
+var editUvIndex = function(currUvEl) {
+    if (currUvEl<=3){
+        currUvEl.classList.remove("badge", "badge-danger");
+        currUvEl.classList.remove("badge", "badge-warning");
+        currUvEl.classList.add("badge", "badge-success");
+    } else if (currUvEl>3 ) {
+        currUvEl.classList.remove("badge", "badge-success");
+        currUvEl.classList.remove("badge", "badge-warning");
+        currUvEl.classList.add("badge", "badge-danger");
+    } else {
+        currUvEl.classList.remove("badge", "badge-success");
+        currUvEl.classList.remove("badge", "badge-danger");
+        currUvEl.classList.add("badge", "badge-warning");
+    }
 };
 
+
+//fetches 5 day forecast information
 var displayForecast = function(lat,lon) {
     var apiUrl=apiBegin +lat +"&lon="+lon+apiEnd;
     fetch(apiUrl).then(function(response){
@@ -167,21 +170,25 @@ var displayForecast = function(lat,lon) {
                 date3El.textContent=moment(current.dt).add(3,"days").format("M/D/YYYY");
                 date4El.textContent=moment(current.dt).add(4,"days").format("M/D/YYYY");
                 date5El.textContent=moment(current.dt).add(5,"days").format("M/D/YYYY");
+                //display weather icon
                 img1El.setAttribute("src",iconStartUrl+data.daily[0].weather[0].icon+iconEndUrl);
                 img2El.setAttribute("src",iconStartUrl+data.daily[1].weather[0].icon+iconEndUrl);
                 img3El.setAttribute("src",iconStartUrl+data.daily[2].weather[0].icon+iconEndUrl);
                 img4El.setAttribute("src",iconStartUrl+data.daily[3].weather[0].icon+iconEndUrl);
                 img5El.setAttribute("src",iconStartUrl+data.daily[4].weather[0].icon+iconEndUrl);
-                temp1El.textContent=data.daily[0].temp.max+"°F"
-                temp2El.textContent=data.daily[1].temp.max+"°F"
-                temp3El.textContent=data.daily[2].temp.max+"°F"
-                temp4El.textContent=data.daily[3].temp.max+"°F"
-                temp5El.textContent=data.daily[4].temp.max+"°F"
+                //display high temperature
+                temp1El.textContent=data.daily[0].temp.max+"°F";
+                temp2El.textContent=data.daily[1].temp.max+"°F";
+                temp3El.textContent=data.daily[2].temp.max+"°F";
+                temp4El.textContent=data.daily[3].temp.max+"°F";
+                temp5El.textContent=data.daily[4].temp.max+"°F";
+                //display wind speed
                 wind1El.textContent=data.daily[0].wind_speed+" MPH";
                 wind2El.textContent=data.daily[1].wind_speed+" MPH";
                 wind3El.textContent=data.daily[2].wind_speed+" MPH";
                 wind4El.textContent=data.daily[3].wind_speed+" MPH";
                 wind5El.textContent=data.daily[4].wind_speed+" MPH";
+                //display humidity
                 humidity1El.textContent=data.daily[0].humidity+"%";
                 humidity2El.textContent=data.daily[1].humidity+"%";
                 humidity3El.textContent=data.daily[2].humidity+"%";
@@ -195,12 +202,51 @@ var displayForecast = function(lat,lon) {
 };
 
 //save to local storage
+var saveCity = function(city){
+    cityArr.push(city);
+    console.log(cityArr);
+    localStorage.setItem("cityArr",JSON.stringify(cityArr));
+}
+
+var loadCity = function(){
+    cityArr =localStorage.getItem("cityArr");
+
+    if(!cityArr) {
+        cityArr=[];
+        return false;
+    }
+
+    cityArr=JSON.parse(cityArr);
+ 
+
+    for(var i=0; i<cityArr.length; i++) {
+        addSearchHistoryEl(cityArr[i]);
+    };
+};
 
 
+var addSearchHistoryEl = function(cityArr) {
+    var searchHistoryEl = document.querySelector("#searchHistory");
+    var searchDivEl = document.createElement("div")
+    var searchButtonEl=document.createElement("button");
 
-//convert Unix Timestamp to date
- //  moment(dt).format("M/D/YYYY");
+    searchDivEl.classList="row";
+    
+    searchButtonEl.classList = "btn btn-secondary btn-lg btn-block col mb-3";
+    searchButtonEl.textContent=cityArr;
+    searchHistoryEl.appendChild(searchDivEl);
+    searchDivEl.appendChild(searchButtonEl);
+
+    searchButtonEl.addEventListener("click",function(){
+        getCoordinates(searchButtonEl.textContent);
+    });
+};
 
 
 // add event listener to form
 userFormEl.addEventListener('submit', formSubmitHandler);
+
+//set local city so that form always has content
+getCoordinates("Greensboro");
+
+loadCity();

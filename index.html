@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="header d-flex justify-content-center align-items-center">
             <h1 class="text-center">Weather Dashboard</h1>
         </div>
     </header>
@@ -31,13 +31,15 @@
                         <button type="submit" class="btn btn-primary" id="submit">Search</button>
                     </form>
                 </div>
-                <div id="searchHistory" class="searches">
+                <div id="searchHistory" class="searches d-flex flex-column justify-content-between mx-5">
             
                 </div>
             </div>
         <div id="weather" class="col-12 col-md-8">
             <div class="card">
-                <h2 class="card-title"> <span id="city-name"></span><span id="currDate"></span><img id="currImg" src="" alt="Today's Weather Icon"></h2>
+                <div class="">
+                    <h2 class="card-title"> <span id="city-name"></span><span id="currDate"></span><img id="currImg" src="" alt="Today's Weather Icon"></h2>
+                </div>
                 <div id="current" class="card-text">
                     <p>Temp: <span id="currTemp"></span></p>
                     <p>Wind: <span id="currWind"></span></p>
