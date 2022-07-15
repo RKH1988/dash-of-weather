@@ -19,7 +19,4 @@ App that allows a user to enter a location and retrieve a live weather forecast 
 https://rkh1988.github.io/dash-of-weather/
 
 ## GitHub Repository
-https://github.com/RKH1988/dash-of-weather
-
-## Credits
-* 
+https://github.com/RKH1988/dash-of-weather 
